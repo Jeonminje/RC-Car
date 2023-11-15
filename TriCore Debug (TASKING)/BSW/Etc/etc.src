@@ -1,0 +1,241 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
+	.compiler_invocation	"ctc -f cc14856a --dep-file=BSW/Etc/etc.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc27xd -D__CPU_TC27XD__ --core=tc1.6.x --fp-model=+float -D__CPU__=tc27xd -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\BSW -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\BSW\\\\Drivers -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\BSW\\\\Etc -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\BSW\\\\IO -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Configurations -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Infra -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Infra\\\\Sfr\\\\TC27D -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Infra\\\\Sfr\\\\TC27D\\\\_Reg -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Service -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Service\\\\CpuGeneric\\\\StdIf -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Comm -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Asclin -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Asclin\\\\Asc -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Asclin\\\\Std -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Cpu -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Cpu\\\\CStart -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Gpt12 -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Gpt12\\\\Std -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Gtm -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Mtu -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Port -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Port\\\\Std -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Scu -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Scu\\\\Std -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Src -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Src\\\\Std -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Stm -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\Stm\\\\Std -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\_Impl -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\_Lib -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\_Lib\\\\DataHandling -IC:\\\\AURIX-v1.9.8-workspace\\\\autoever_project\\\\Libraries\\\\iLLD\\\\TC27D\\\\Tricore\\\\_PinMap -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o BSW/Etc/etc.src ../BSW/Etc/etc.c"
+	.compiler_name		"ctc"
+	;source	'../BSW/Etc/etc.c'
+
+	
+$TC16X
+	
+	.sdecl	'.text.etc.delay_ms',code,cluster('delay_ms')
+	.sect	'.text.etc.delay_ms'
+	.align	2
+	
+	.global	delay_ms
+; Function delay_ms
+.L8:
+delay_ms:	.type	func
+	sub.a	a10,#8
+.L25:
+	mov	d15,#0
+.L34:
+	st.w	[a10],d15
+.L35:
+	j	.L2
+.L3:
+	mov	d15,#0
+.L36:
+	st.w	[a10]4,d15
+.L37:
+	j	.L4
+.L5:
+	j	.L6
+.L6:
+	ld.w	d15,[a10]4
+.L38:
+	add	d15,#1
+	st.w	[a10]4,d15
+.L4:
+	ld.w	d15,[a10]4
+.L39:
+	mov	d0,#18200
+.L40:
+	jlt.u	d15,d0,.L5
+.L41:
+	ld.w	d15,[a10]
+.L42:
+	add	d15,#1
+	st.w	[a10],d15
+.L2:
+	ld.w	d15,[a10]
+.L43:
+	jlt.u	d15,d4,.L3
+.L44:
+	ret
+.L18:
+	
+__delay_ms_function_end:
+	.size	delay_ms,__delay_ms_function_end-delay_ms
+.L17:
+	; End of function
+	
+	.calls	'delay_ms','',8
+	.sdecl	'.debug_info',debug
+	.sect	'.debug_info'
+.L10:
+	.word	228
+	.half	3
+	.word	.L11
+	.byte	4
+.L9:
+	.byte	1
+	.byte	'../BSW/Etc/etc.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\AURIX-v1.9.8-workspace\\autoever_project\\TriCore Debug (TASKING)\\',0,12,1
+	.word	.L12
+.L19:
+	.byte	2
+	.byte	'unsigned int',0,4,7
+.L21:
+	.byte	3
+	.word	180
+.L23:
+	.byte	3
+	.word	180
+	.byte	4,1,5
+	.word	206
+	.byte	6
+	.byte	'__codeptr',0,1,1,1
+	.word	208
+	.byte	0
+	.sdecl	'.debug_abbrev',debug
+	.sect	'.debug_abbrev'
+.L11:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,53,0,73,19,0,0,4,21,0,54,15
+	.byte	0,0,5,15,0,73,19,0,0,6,22,0,3,8,58,15,59,15,57,15,73,19,0,0,0
+	.sdecl	'.debug_line',debug
+	.sect	'.debug_line'
+.L12:
+	.word	.L27-.L26
+.L26:
+	.half	3
+	.word	.L29-.L28
+.L28:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Etc/etc.c',0,0,0,0,0
+.L29:
+.L27:
+	.sdecl	'.debug_info',debug,cluster('delay_ms')
+	.sect	'.debug_info'
+.L13:
+	.word	276
+	.half	3
+	.word	.L14
+	.byte	4,1
+	.byte	'../BSW/Etc/etc.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\AURIX-v1.9.8-workspace\\autoever_project\\TriCore Debug (TASKING)\\',0,12,1
+	.word	.L16,.L15
+	.byte	2
+	.word	.L9
+	.byte	3
+	.byte	'delay_ms',0,1,4,6,1,1,1
+	.word	.L8,.L18,.L7
+	.byte	4
+	.byte	'delay_time',0,1,4,28
+	.word	.L19,.L20
+	.byte	5
+	.word	.L8,.L18
+	.byte	6
+	.byte	'i',0,1,6,27
+	.word	.L21,.L22
+	.byte	6
+	.byte	'j',0,1,6,30
+	.word	.L23,.L24
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('delay_ms')
+	.sect	'.debug_abbrev'
+.L14:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('delay_ms')
+	.sect	'.debug_line'
+.L15:
+	.word	.L31-.L30
+.L30:
+	.half	3
+	.word	.L33-.L32
+.L32:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Etc/etc.c',0,0,0,0,0
+.L33:
+	.byte	5,6,7,0,5,2
+	.word	.L8
+	.byte	3,3,1,5,11,9
+	.half	.L25-.L8
+	.byte	3,3,1,5,10,9
+	.half	.L34-.L25
+	.byte	1,5,26,9
+	.half	.L35-.L34
+	.byte	1,5,15,9
+	.half	.L3-.L35
+	.byte	3,1,1,5,14,9
+	.half	.L36-.L3
+	.byte	1,5,25,9
+	.half	.L37-.L36
+	.byte	1,5,13,9
+	.half	.L5-.L37
+	.byte	3,1,1,5,27,9
+	.half	.L6-.L5
+	.byte	3,127,1,5,28,9
+	.half	.L38-.L6
+	.byte	1,5,18,9
+	.half	.L4-.L38
+	.byte	1,5,20,9
+	.half	.L39-.L4
+	.byte	1,5,25,9
+	.half	.L40-.L39
+	.byte	1,5,28,7,9
+	.half	.L41-.L40
+	.byte	3,127,1,5,29,9
+	.half	.L42-.L41
+	.byte	1,5,14,9
+	.half	.L2-.L42
+	.byte	1,5,26,9
+	.half	.L43-.L2
+	.byte	1,5,1,7,9
+	.half	.L44-.L43
+	.byte	3,3,1,7,9
+	.half	.L17-.L44
+	.byte	0,1,1
+.L31:
+	.sdecl	'.debug_ranges',debug,cluster('delay_ms')
+	.sect	'.debug_ranges'
+.L16:
+	.word	-1,.L8,0,.L17-.L8,0,0
+	.sdecl	'.debug_loc',debug,cluster('delay_ms')
+	.sect	'.debug_loc'
+.L7:
+	.word	-1,.L8,0,.L25-.L8
+	.half	2
+	.byte	138,0
+	.word	.L25-.L8,.L18-.L8
+	.half	2
+	.byte	138,8
+	.word	.L18-.L8,.L18-.L8
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L20:
+	.word	-1,.L8,0,.L18-.L8
+	.half	1
+	.byte	84
+	.word	0,0
+.L22:
+	.word	-1,.L8,0,.L18-.L8
+	.half	2
+	.byte	145,120
+	.word	0,0
+.L24:
+	.word	-1,.L8,0,.L18-.L8
+	.half	2
+	.byte	145,124
+	.word	0,0
+	.sdecl	'.debug_frame',debug
+	.sect	'.debug_frame'
+.L45:
+	.word	48
+	.word	-1
+	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
+	.byte	8,39
+	.sdecl	'.debug_frame',debug,cluster('delay_ms')
+	.sect	'.debug_frame'
+	.word	48
+	.word	.L45,.L8,.L18-.L8
+	.byte	8,18,8,19,8,20,8,21,8,22,8,23,4
+	.word	(.L25-.L8)/2
+	.byte	19,8,22,26,3,19,138,8,4
+	.word	(.L18-.L25)/2
+	.byte	19,0,8,26,0,0
+	; Module end
