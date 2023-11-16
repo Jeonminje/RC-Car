@@ -4,6 +4,14 @@
 #include "Bluetooth.h"
 
 IfxCpu_syncEvent g_cpuSyncEvent = 0;
+int parkingCount = 0;
+
+void goStraight(int duty, int dir);
+void turnLeft(int duty, int dir);
+void turnRight(int duty, int dir);
+int checkBack();
+int checkFront();
+int checkParking();
 
 int core0_main (void)
 {
@@ -26,102 +34,228 @@ int core0_main (void)
     Init_GPIO();
     Init_Mystdio();
     Init_DCMotors();
+    Init_Ultrasonics();
+    Init_Buzzer();
+    Init_Bluetooth();
 
     /* Start Code */
     stopChA();
     stopChB();
 
-    unsigned char ch;
-    volatile int distance;
-    int duty = 20;
+    unsigned char ch = ' ';
+    unsigned char prev_ch = ' ';
+    int duty = 35;
+    int frontObject = 0;
+    int backObject = 0;
+    setBeepCycle(0);
 
     while (1)
     {
-        distance = getTofDistance();
+        char ch = getBluetoothByte_nonBlocked();
+        if (ch >= 0)
+        {
+            setBluetoothByte_Blocked(ch);
+            _out_uart3(ch);
+        }
+        // 후진을 할 상황에만 후방 초음파 체크
+        if (prev_ch == 's' || prev_ch == 'b' || prev_ch == 'z' || prev_ch == 'c' || prev_ch == 'p')
+        {
+            backObject = checkBack();
+        }
 
-        if(distance <= 150 && distance > 100){
-            stopChA();
-            stopChB();
-//            my_printf("distance : %d", distance);
+        if (prev_ch == 'p')
+        {
+            if(checkParking() == 1){
+                prev_ch = 's'; // 후진 이라는 뜻, 인식되면 멈추려고
+                turnLeft(duty - 5, 0);
+                delay_ms(1800);         // 90도 회전
+                goStraight(duty - 15, 0);
+
+                parkingCount = 0;
+            }
+        }
+
+        // 전진을 할 상황에만 전방 센서 체크
+        if (prev_ch == 'w' || prev_ch == 'a' || prev_ch == 'd')
+        {
+            frontObject = checkFront();
+        }
+
+        if(ch < 0){
             continue;
         }
 
         // Car Control
-        int result;
-        result = _poll_uart3(&ch);
-
-        if(result != 1){
-            continue;
-        }
-
         if (ch == 'w' || ch == 'W') // up button
         {
-            movChA_PWM(40, 1);
-            movChB_PWM(40, 1);
-            for(int i=0; i<5000000; i++){
+            setBeepCycle(0);
+
+            if(frontObject == 0){
+                goStraight(duty, 1);
             }
-            movChA_PWM(duty, 1);
-            movChB_PWM(duty, 1);
 
             ch = ' ';
+            prev_ch = 'w';
         }
         else if (ch == 'd' || ch == 'D') // right button
         {
-            movChA_PWM(duty + 20, 1);
-            movChB_PWM(duty - 10, 1);
+            setBeepCycle(0);
+
+            if(frontObject == 0){
+                turnRight(duty, 1);
+            }
 
             ch = ' ';
+            prev_ch = 'd';
         }
         else if (ch == 'a' || ch == 'A') // left button
         {
-            movChA_PWM(duty - 10, 1);
-            movChB_PWM(duty + 20, 1);
+            setBeepCycle(0);
 
-            ch = ' ';
-        }
-        else if (ch == 's' || ch == 'S') // down button
-        {
-            movChA_PWM(40, 0);
-            movChB_PWM(40, 0);
-            for(int i=0; i<5000000; i++){
-
+            if(frontObject == 0){
+                turnLeft(duty, 1);
             }
-            movChA_PWM(duty, 0);
-            movChB_PWM(duty, 0);
 
             ch = ' ';
+            prev_ch = 'a';
         }
-        else if (ch == 'b' || ch == 'B') // down button
+        else if (ch == 's' || ch == 'S') // back button
+        {
+            if(backObject == 0){
+                goStraight(duty, 0);
+            }
+
+            ch = ' ';
+            prev_ch = 's';
+        }
+        else if (ch == 'b' || ch == 'B') // break button
         {
             stopChA();
             stopChB();
 
             ch = ' ';
+            prev_ch = 'b';
         }
-        else if (ch == 'g' || ch == 'G') // start
+        else if (ch == 'c' || ch == 'C') // back right button
         {
-            movChA_PWM(40, 1);
-            movChB_PWM(40, 1);
+            if(backObject == 0){
+                turnRight(duty, 0);
+            }
 
             ch = ' ';
+            prev_ch = 'c';
         }
-        else if (ch == 'c' || ch == 'C') // right button
+        else if (ch == 'z' || ch == 'Z') // back left button
         {
-            movChA_PWM(duty + 20, 0);
-            movChB_PWM(duty - 10, 0);
+            if(backObject == 0){
+                turnLeft(duty, 0);
+            }
 
             ch = ' ';
+            prev_ch = 'z';
         }
-        else if (ch == 'z' || ch == 'Z') // left button
+        else if (ch == 'p' || ch == 'P')
         {
-            movChA_PWM(duty - 10, 0);
-            movChB_PWM(duty + 20, 0);
+            goStraight(30, 1);
 
             ch = ' ';
+            prev_ch = 'p';
         }
 
+
+        backObject = 0;
+        frontObject = 0;
     }
     return 0;
 
+}
+
+void goStraight(int duty, int dir){
+    movChA_PWM(50, dir);
+    movChB_PWM(50, dir);
+    for (int i = 0; i < 500000; i++)
+    {
+    }
+    movChA_PWM(duty, dir);
+    movChB_PWM(duty, dir);
+}
+
+void turnRight(int duty, int dir){
+    movChA_PWM(duty + 20, dir);
+    movChB_PWM(0, dir);
+}
+
+void turnLeft(int duty, int dir){
+    movChA_PWM(0, dir);
+    movChB_PWM(duty + 20, dir);
+}
+
+int checkBack(){
+    int result = 0;
+    float back_distance = ReadRearUltrasonic_Filt();
+    bl_printf("back_distance : %f\n", back_distance);
+    delay_ms(10);
+
+    if (back_distance <= 25 && back_distance > 18)
+    {
+        setBeepCycle(260);
+
+    }
+    else if (back_distance <= 18 && back_distance > 12)
+    {
+        setBeepCycle(50);
+
+    }
+    else if (back_distance <= 12 && back_distance > 5)
+    {
+        setBeepCycle(10);
+
+    }
+    else if (back_distance <= 5 && back_distance >= 0)
+    {
+        setBeepCycle(2);
+        stopChA();
+        stopChB();
+
+        result = 1;
+    }else{
+        setBeepCycle(0);
+    }
+
+    return result;
+}
+
+int checkFront(){
+    int result = 0;
+    int front_distance = getTofDistance();
+    bl_printf("front_distance : %d\n", front_distance);
+
+    if(front_distance <= 150 && front_distance > 0){
+        stopChA();
+        stopChB();
+
+        result = 1;
+    }
+
+    return result;
+}
+
+int checkParking(){
+    int result = 0;
+    float side_distance = ReadLeftUltrasonic_Filt();
+    bl_printf("side_distance : %f\n", side_distance);
+    delay_ms(10);
+
+    if(side_distance > 13){
+        parkingCount++;
+    }else{
+        parkingCount = 0;
+    }
+
+    if(parkingCount > 10){
+        result = 1;
+    }
+
+    return result;
 }
 
