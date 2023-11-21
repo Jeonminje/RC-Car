@@ -72,7 +72,7 @@ int core0_main (void)
             if(checkParking() == 1){
                 prev_ch = 's'; // 후진 이라는 뜻, 인식되면 멈추려고
                 turnLeft(duty - 5, 0);
-                delay_ms(1600);         // 90도 회전
+                delay_ms(1625);         // 90도 회전
                 goStraight(duty - 10, 0);
 
                 parkingCount = 0;
@@ -85,7 +85,7 @@ int core0_main (void)
         }
 
         // 전진을 할 상황에만 전방 센서 체크
-        if (prev_ch == 'w' || prev_ch == 'a' || prev_ch == 'd'|| prev_ch == 't')
+        if (prev_ch == 'w' || prev_ch == 'g' || prev_ch == 'a' || prev_ch == 'd'|| prev_ch == 't')
         {
             frontObject = checkFront();
 
@@ -207,7 +207,18 @@ int core0_main (void)
             prev_ch = 't';
             break_flag = 0;
         }
+        else if (ch == 'g' || ch == 'G') // up button
+        {
+            setBeepCycle(0);
 
+            if(frontObject == 0){
+                goStraight(60, 1);
+            }
+
+            ch = ' ';
+            prev_ch = 'g';
+            break_flag = 0;
+        }
 
         backObject = 0;
         frontObject = 0;
@@ -283,11 +294,11 @@ int checkFront(){
     int front_distance = getTofDistance();
     bl_printf("front_distance : %d, break_flag : %d\n", front_distance, break_flag);
 
-    if(front_distance > 0 && front_distance <= 150 && break_flag == 0){
+    if(front_distance > 0 && front_distance <= 190 && break_flag == 0){
         movChA_PWM(100, 0);
         movChB_PWM(100, 0);
 
-        delay_ms(1);
+        delay_ms(5);
 
         stopChA();
         stopChB();
@@ -311,7 +322,7 @@ int checkParking(){
         parkingCount = 0;
     }
 
-    if(parkingCount > 10){
+    if(parkingCount > 13){
         result = 1;
     }
 
@@ -349,12 +360,12 @@ void Acc(){
         movChB_PWM(standard_value - 40, 1);
         break_flag = 0;
     }
-    else if(front_distance <= 290 && front_distance > 220){
+    else if(front_distance <= 290 && front_distance > 230){
         movChA_PWM(standard_value - 50, 1);
         movChB_PWM(standard_value - 50, 1);
         break_flag = 0;
     }
-    else if(front_distance <= 220 && front_distance > 150){
+    else if(front_distance <= 230 && front_distance > 190){
         movChA_PWM(standard_value - 60, 1);
         movChB_PWM(standard_value - 60, 1);
         break_flag = 0;
